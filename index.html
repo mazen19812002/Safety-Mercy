@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبادرة أمان ورحمة | إدارة شرق كفر الشيخ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9', // Sky 500
+                        secondary: '#0284c7', // Sky 600
+                        accent: '#10b981', // Emerald 500
+                        danger: '#ef4444', // Red 500
+                        bgLight: '#e0f2fe', // Sky 100
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #e0f2fe;
+            scroll-behavior: smooth;
+            padding-top: 60px; /* Space for fixed navbar */
+            transition: font-size 0.2s ease; /* Smooth zoom transition */
+            font-weight: 700; /* Force Bold Globally */
+        }
+
+        /* Hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .hover-scale-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-scale-card:hover {
+            transform: scale(1.015);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Utility to force bold even on previously thin elements */
+        .title-thin {
+            font-weight: 800 !important; /* Extra Bold for titles */
+        }
+        
+        /* Ensure normal text is bold */
+        p, li, span, a, div {
+            font-weight: 700;
+        }
+        
+        /* Make lighter text darker for better contrast with bold */
+        .text-gray-500, .text-gray-600 {
+            color: #4b5563; /* Darker gray */
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Tab Active State */
+        .nav-tab.active {
+            color: #0284c7; /* Sky 600 */
+            background-color: #e0f2fe; /* Sky 50 */
+            font-weight: 800;
+            border-bottom: 3px solid #0ea5e9;
+        }
+        
+        .nav-tab {
+            font-weight: 700;
+        }
+
+        /* Floating Logo Styles */
+        .floating-logo-container {
+            position: fixed;
+            top: 75px; /* Just below the navbar */
+            right: 20px; /* Float on the right */
+            z-index: 40;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .floating-logo-container:hover {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        /* Adjust content margin on desktop to avoid overlap with logo */
+        @media (min-width: 768px) {
+            .main-container {
+                padding-right: 120px; /* Space for the floating logo on right */
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-900 antialiased overflow-x-hidden font-bold">
+
+    <!-- Compact Sticky Tabs Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect shadow-sm h-[60px] flex items-center justify-center">
+        <div class="w-full max-w-6xl px-4 flex items-center justify-between">
+            
+            <!-- Title only (Logo moved to floating) -->
+            <div class="hidden md:flex items-center flex-shrink-0 ml-4">
+                <span class="text-primary font-extrabold text-lg title-thin border-l-2 border-gray-300 pl-3 ml-2">أمان ورحمة</span>
+                <span class="text-xs text-gray-600 font-bold">إدارة شرق كفر الشيخ</span>
+            </div>
+
+            <!-- Scrollable Tabs Container -->
+            <div class="flex-1 overflow-x-auto no-scrollbar flex items-center justify-start md:justify-center gap-1 py-1">
+                <a href="#header-section" class="nav-tab whitespace-nowrap px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-primary transition-colors rounded-t-lg border-b-2 border-transparent flex items-center gap-1">
+                    <i class="fas fa-university"></i> الجهة
+                </a>
+                <a href="#intro-section" class="nav-tab whitespace-nowrap px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-primary transition-colors rounded-t-lg border-b-2 border-transparent flex items-center gap-1">
+                    <i class="fas fa-scroll"></i> الفلسفة
+                </a>
+                <a href="#card-section" class="nav-tab whitespace-nowrap px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-primary transition-colors rounded-t-lg border-b-2 border-transparent flex items-center gap-1">
+                    <i class="fas fa-id-card"></i> البطاقة
+                </a>
+                <a href="#target-section" class="nav-tab whitespace-nowrap px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-primary transition-colors rounded-t-lg border-b-2 border-transparent flex items-center gap-1">
+                    <i class="fas fa-bullseye"></i> الجمهور
+                </a>
+                <a href="#parents-pkg" class="nav-tab whitespace-nowrap px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-primary transition-colors rounded-t-lg border-b-2 border-transparent flex items-center gap-1">
+                    <i class="fas fa-cubes"></i> الحزم
+                </a>
+                <a href="#action-plan-section" class="nav-tab whitespace-nowrap px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-primary transition-colors rounded-t-lg border-b-2 border-transparent flex items-center gap-1">
+                    <i class="fas fa-calendar-alt"></i> الخطة
+                </a>
+                <a href="#signatures-section" class="nav-tab whitespace-nowrap px-3 py-2 text-xs md:text-sm text-gray-600 hover:text-primary transition-colors rounded-t-lg border-b-2 border-transparent flex items-center gap-1">
+                    <i class="fas fa-signature"></i> التوقيعات
+                </a>
+            </div>
+
+            <!-- Zoom Controls -->
+            <div class="flex items-center gap-1 mr-2 pl-2 border-r border-gray-300">
+                <button onclick="adjustZoom(1)" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700 transition-colors shadow-sm font-bold" title="تكبير">
+                    <i class="fas fa-plus text-xs"></i>
+                </button>
+                <button onclick="adjustZoom(-1)" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-red-100 hover:text-red-700 transition-colors shadow-sm font-bold" title="تصغير">
+                    <i class="fas fa-minus text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Logo (Circle on Right) -->
+    <div class="floating-logo-container">
+        <div class="w-20 h-20 md:w-28 md:h-28 bg-white rounded-full shadow-xl border-4 border-white overflow-hidden flex items-center justify-center relative">
+            <div class="absolute inset-0 bg-blue-50 opacity-20"></div>
+            <img src="00.png" alt="شعار المبادرة" class="w-full h-full object-contain p-1" onerror="this.src='https://placehold.co/150x150?text=LOGO'">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-container w-full max-w-5xl mx-auto p-4 md:p-8 space-y-8 transition-all">
+
+        <!-- Section 1: Header Info -->
+        <section id="header-section" class="glass-effect bg-white rounded-2xl p-6 shadow-sm border-t-4 border-primary hover-scale-card scroll-mt-24">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-gray-200 pb-4 mb-4">
+                <div>
+                    <h3 class="text-sm font-bold text-gray-600 mb-1">محافظة كفر الشيخ - مديرية التربية والتعليم</h3>
+                    <h2 class="text-lg font-extrabold text-gray-800 title-thin mb-1">إدارة شرق كفر الشيخ التعليمية</h2>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-primary title-thin">إدارة التدريب</h1>
+                </div>
+                <div class="mt-4 md:mt-0 text-left">
+                    <span class="bg-blue-100 text-primary text-xs font-bold px-3 py-1 rounded-full">خطة تنفيذية</span>
+                </div>
+            </div>
+            <div class="space-y-2 font-bold">
+                <p class="text-lg"><span class="font-extrabold text-gray-800">الموجه إليهم:</span> السيد الأستاذ الفاضل / مدير إدارة … (جميع الإدارات)</p>
+                <p class="text-lg"><span class="font-extrabold text-gray-800">الموضوع:</span> إطلاق حملة «أمان ورحمة»</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Introduction & Philosophy -->
+        <section id="intro-section" class="bg-white rounded-2xl p-6 shadow-sm hover-scale-card relative overflow-hidden scroll-mt-24">
+            <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-primary to-secondary"></div>
+            <h2 class="text-2xl md:text-3xl text-gray-900 mb-6 flex items-center title-thin font-extrabold">
+                <span class="ml-3 text-3xl">📜</span> مقدمة وفلسفة المبادرة
+            </h2>
+            
+            <div class="bg-blue-50 p-4 rounded-xl mb-6 border-r-4 border-secondary">
+                <p class="text-gray-800 leading-relaxed text-lg font-bold">
+                    بناءً على توجيهات القيادات التربوية، تقرر إطلاق حملة «أمان ورحمة» بهدف تحصين النشء وبناء جيل متزن وواعٍ.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-green-50 p-5 rounded-xl hover:bg-green-100 transition-colors">
+                    <h3 class="text-lg font-extrabold text-green-800 mb-2 title-thin">🎯 الهدف</h3>
+                    <p class="text-gray-700 font-bold">تعزيز الوعي الإيجابي والحد من العنف المدرسي.</p>
+                </div>
+                <div class="bg-purple-50 p-5 rounded-xl hover:bg-purple-100 transition-colors">
+                    <h3 class="text-lg font-extrabold text-purple-800 mb-2 title-thin">💡 الفلسفة</h3>
+                    <p class="text-gray-700 font-bold">تمثل الحملة ذراعًا تنفيذيًا يهدف إلى تحويل التحدي السلوكي إلى فرصة لتعميق القيم التربوية.</p>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <h3 class="text-xl text-gray-900 mb-3 title-thin font-extrabold border-b-2 border-gray-200 pb-2">طبيعة الحملة</h3>
+                <p class="text-gray-700 italic leading-relaxed bg-gray-50 p-4 rounded-lg font-bold border border-gray-200">
+                    "ليست مجرد برنامج توعوي، بل حراك تربوي متكامل يركز على تغيير الأنماط السلوكية من مصدرها، وتحويل المدارس من أماكن محتملة للنزاع إلى مختبرات للذكاء العاطفي والمواطنة الإيجابية."
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: Campaign Card -->
+        <section id="card-section" class="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-md hover-scale-card text-center scroll-mt-24">
+            <h2 class="text-2xl md:text-3xl text-primary mb-6 title-thin font-extrabold">
+                <span class="inline-block animate-pulse ml-2">✨</span> بطاقة تعريف الحملة
+            </h2>
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-800 mb-4 title-thin">أمان ورحمة</h1>
+            
+            <p class="text-gray-700 max-w-2xl mx-auto mb-8 font-bold text-lg">
+                اسم يعكس الهدف الجوهري للمبادرة، والمتمثل في تحقيق الأمان النفسي والجسدي، وترسيخ قيمة الرحمة كأساس للتفاعل التربوي داخل المدرسة.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 text-right">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-xl text-secondary mb-3 title-thin font-extrabold">🔖 شعار الحملة</h3>
+                    <p class="text-gray-700 leading-relaxed font-bold">تأسيس بيئة تعليمية محفزة خالية من كل أشكال العنف والتنمر، يُسهم فيها جميع الأطراف.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-xl text-secondary mb-3 title-thin font-extrabold">👁️ رؤية الحملة</h3>
+                    <p class="text-gray-700 leading-relaxed font-bold">تأسيس بيئة تعليمية محفزة، خالية من كل أشكال العنف والتنمر، يسهم فيها جميع الأطراف (الأسرة، الطالب، المدرسة) كشركاء فاعلين.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Target Audience -->
+        <section id="target-section" class="bg-white rounded-2xl p-6 shadow-sm hover-scale-card scroll-mt-24">
+            <h2 class="text-2xl md:text-3xl text-gray-900 mb-6 flex items-center title-thin font-extrabold">
+                <span class="ml-3 text-3xl">🎯</span> الجمهور المستهدف
+            </h2>
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex-1 bg-yellow-50 p-5 rounded-xl border-t-4 border-yellow-400">
+                    <h4 class="font-extrabold text-yellow-900 mb-2">بشكل خاص</h4>
+                    <p class="text-lg text-gray-800 font-bold">أولياء الأمور <span class="text-sm bg-yellow-200 px-2 py-1 rounded-full text-yellow-900 mr-2 font-extrabold">الركيزة الأولى</span></p>
+                </div>
+                <div class="flex-1 bg-gray-50 p-5 rounded-xl border-t-4 border-gray-400">
+                    <h4 class="font-extrabold text-gray-900 mb-2">بشكل عام</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded-lg shadow-sm font-bold text-gray-700">الطلاب</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded-lg shadow-sm font-bold text-gray-700">المعلمون</span>
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded-lg shadow-sm font-bold text-gray-700">القيادات المدرسية</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Packages Intro -->
+        <div class="text-center py-4">
+            <h2 class="text-3xl text-primary title-thin mb-2 font-extrabold">📦 الإطار المنهجي وحزم العمل (Packages)</h2>
+            <p class="text-gray-600 font-bold">تعتمد المبادرة على منهجية التدخل الشامل</p>
+        </div>
+
+        <!-- Package 1: Parents -->
+        <section id="parents-pkg" class="bg-white rounded-2xl p-6 shadow-sm hover-scale-card border-r-8 border-orange-400 scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="bg-orange-100 p-3 rounded-full ml-4">
+                    <span class="text-3xl">👨‍👩‍👧‍👦</span>
+                </div>
+                <div>
+                    <h2 class="text-2xl text-orange-600 font-extrabold title-thin">الحزمة الموجهة لأولياء الأمور</h2>
+                    <span class="text-sm text-gray-600 font-bold">الركيزة الأولى - الأسرة شريك الضبط</span>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-orange-50 p-4 rounded-lg">
+                    <h3 class="font-extrabold text-orange-900 mb-2">📋 المحتوى التدريبي: برنامج «صنّاع الوعي»</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-800 font-bold">
+                        <li>فن الحوار اللاعنفي داخل الأسرة.</li>
+                        <li>إدارة الغضب الأسري وانعكاسه على سلوك الأبناء.</li>
+                        <li>سيكولوجية السلوك العدواني لدى الأطفال والمراهقين.</li>
+                        <li>البدائل التربوية الإيجابية للعقاب الجسدي واللفظي.</li>
+                    </ul>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white border border-orange-100 p-4 rounded-lg">
+                        <h4 class="font-extrabold text-gray-800 mb-2">🛠️ آلية التنفيذ</h4>
+                        <p class="text-gray-700 text-sm font-bold">ورش عمل تفاعلية شهرية إلكترونيًا عبر (Zoom / Google Meet).</p>
+                    </div>
+                    <div class="bg-white border border-orange-100 p-4 rounded-lg">
+                        <h4 class="font-extrabold text-gray-800 mb-2">🎯 الهدف المنهجي</h4>
+                        <p class="text-gray-700 text-sm font-bold">تحويل ولي الأمر من متلقٍ للشكوى إلى محلل واعٍ للسلوك.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package 2: Students -->
+        <section id="students-pkg" class="bg-white rounded-2xl p-6 shadow-sm hover-scale-card border-r-8 border-accent scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="bg-emerald-100 p-3 rounded-full ml-4">
+                    <span class="text-3xl">🎓</span>
+                </div>
+                <div>
+                    <h2 class="text-2xl text-accent font-extrabold title-thin">الحزمة الموجهة للطلاب</h2>
+                    <span class="text-sm text-gray-600 font-bold">قلب المبادرة - سفراء التسامح</span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-emerald-50 p-4 rounded-lg">
+                    <h3 class="font-extrabold text-emerald-900 mb-2">📋 التدريب والتوعية</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-800 font-bold">
+                        <li>مهارات الوساطة الطلابية.</li>
+                        <li>أساليب حل النزاعات بين الأقران.</li>
+                        <li>القيادة الإيجابية ونشر ثقافة التسامح.</li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white border border-emerald-100 p-4 rounded-lg">
+                        <h4 class="font-extrabold text-gray-800 mb-2">🛠️ آلية التنفيذ</h4>
+                        <ul class="list-disc list-inside text-sm text-gray-700 font-bold">
+                            <li>تشكيل فرق «سفراء التسامح».</li>
+                            <li>إسناد مهام رصد السلوكيات.</li>
+                            <li>قيادة حملات توعوية طلابية.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-emerald-100 p-4 rounded-lg">
+                        <h4 class="font-extrabold text-gray-800 mb-2">🌟 مؤشر السلوك البناء</h4>
+                        <ul class="list-disc list-inside text-sm text-gray-700 font-bold">
+                            <li>إعداد لوحة شرف مدرسية.</li>
+                            <li>تكريم الطالب الأكثر تسامحًا.</li>
+                            <li>تحويل التكريم إلى أداة تربوية محفزة.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package 3: Teachers -->
+        <section id="teachers-pkg" class="bg-white rounded-2xl p-6 shadow-sm hover-scale-card border-r-8 border-blue-600 scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-100 p-3 rounded-full ml-4">
+                    <span class="text-3xl">🏫</span>
+                </div>
+                <div>
+                    <h2 class="text-2xl text-blue-600 font-extrabold title-thin">الحزمة الموجهة للمعلمين والإدارة</h2>
+                    <span class="text-sm text-gray-600 font-bold">أداة التغيير - المعلم صانع البيئة الآمنة</span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-extrabold text-blue-900 mb-2">📋 التدريب والتوعية</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-800 font-bold">
+                        <li>تقنيات الاستجابة للاصطدامات السلوكية (Restorative Practices).</li>
+                        <li>تنمية الذكاء العاطفي لدى المعلم.</li>
+                        <li>دمج مفاهيم اللاعنف وقبول الاختلاف في الشرح اليومي.</li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white border border-blue-100 p-4 rounded-lg">
+                        <h4 class="font-extrabold text-gray-800 mb-2">🛠️ آلية التنفيذ</h4>
+                        <p class="text-gray-700 text-sm mb-2 font-bold">إدماج وحدة تدريبية متخصصة ضمن خطة التدريب المهني وتزويد المعلمين بأدوات التدخل المبكر.</p>
+                    </div>
+                    <div class="bg-white border border-blue-100 p-4 rounded-lg">
+                        <h4 class="font-extrabold text-gray-800 mb-2">📢 التوعية البصرية</h4>
+                        <p class="text-gray-700 text-sm font-bold">إنتاج بوسترات وفيديوهات برسائل مثل: «الاختلاف قوة» – «الكلمة بناء لا هدم».</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Action Plan -->
+        <section id="action-plan-section" class="relative scroll-mt-24">
+            <div class="text-center py-6">
+                <h2 class="text-3xl text-primary title-thin mb-2 font-extrabold">📅 الخطة التنفيذية التفصيلية الشاملة</h2>
+                <p class="text-gray-600 font-bold">تحويل الرؤية إلى إجراءات عملية دقيقة قابلة للتنفيذ والقياس</p>
+            </div>
+
+            <div class="space-y-8 relative">
+                <!-- Phase 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border-r-4 border-indigo-500 hover-scale-card relative z-10">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-2 rounded-lg text-indigo-600 ml-3">
+                            <span class="font-bold text-xl">1</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-indigo-800 title-thin">المرحلة الأولى: الإعداد والتهيئة المؤسسية</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-extrabold text-gray-900 mb-2">🏢 التشكيل الإداري والتنظيمي (بالإدارة)</h4>
+                            <p class="text-sm text-gray-700 mb-2 font-bold">إصدار قرار إداري بتشكيل فريق الإدارة:</p>
+                            <ul class="text-sm list-disc list-inside text-gray-700 font-bold">
+                                <li>منسق عام الحملة (إدارة التدريب).</li>
+                                <li>عضو توجيه تربية اجتماعية.</li>
+                                <li>عضو توجيه إرشاد نفسي.</li>
+                                <li>منسق إعلامي / رقمي.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-extrabold text-gray-900 mb-2">🏫 تشكيل فرق الحملة (بالمدارس)</h4>
+                            <p class="text-sm text-gray-700 mb-2 font-bold">تكليف مدير كل مدرسة بتشكيل فريق:</p>
+                            <ul class="text-sm list-disc list-inside text-gray-700 font-bold">
+                                <li>قائد الفريق (مدير/وكيل).</li>
+                                <li>أخصائي اجتماعي ونفسي.</li>
+                                <li>رائد اتحاد الطلاب.</li>
+                            </ul>
+                            <p class="text-xs text-primary mt-2 font-extrabold">المهام: رصد السلوكيات ورفع التقارير.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border-r-4 border-green-500 hover-scale-card relative z-10">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-2 rounded-lg text-green-600 ml-3">
+                            <span class="font-bold text-xl">2</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-green-800 title-thin">المرحلة الثانية: التنفيذ التفصيلي حسب حزم العمل</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border border-green-100 rounded-lg overflow-hidden">
+                            <div class="bg-green-50 px-4 py-2 font-extrabold text-green-900">الحزمة الأولى: الأسرة شريك الضبط (أولياء الأمور)</div>
+                            <div class="p-4 grid md:grid-cols-2 gap-4 bg-white">
+                                <div>
+                                    <h5 class="font-extrabold text-sm text-gray-800 mb-1">جلسات برنامج «صنّاع الوعي»:</h5>
+                                    <ul class="text-sm list-decimal list-inside text-gray-700 space-y-1 font-bold">
+                                        <li>التربية الإيجابية وأثرها.</li>
+                                        <li>إدارة الغضب والتفريغ الانفعالي.</li>
+                                        <li>فهم السلوك العدواني والتدخل المبكر.</li>
+                                        <li>بدائل العقاب (المنطقي/التعويض).</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-extrabold text-sm text-gray-800 mb-1">آلية التنفيذ:</h5>
+                                    <ul class="text-sm list-disc list-inside text-gray-700 font-bold">
+                                        <li>جدول شهري ثابت للورش.</li>
+                                        <li>تسجيل الحضور إلكترونيًا.</li>
+                                        <li>إتاحة التسجيل للمشاهدة اللاحقة.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border border-green-100 rounded-lg overflow-hidden">
+                            <div class="bg-green-50 px-4 py-2 font-extrabold text-green-900">الحزمة الثانية: سفراء التسامح (الطلاب)</div>
+                            <div class="p-4 bg-white">
+                                <div class="flex flex-wrap gap-2 text-sm text-gray-700 mb-2 font-bold">
+                                    <span class="bg-gray-100 px-2 py-1 rounded">معايير الاختيار: سلوك منضبط، قبول، تواصل.</span>
+                                </div>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h5 class="font-extrabold text-sm text-gray-800">التدريب:</h5>
+                                        <p class="text-sm text-gray-700 font-bold">القيادة، الإصغاء، الوساطة الطلابية.</p>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-extrabold text-sm text-gray-800">آلية العمل:</h5>
+                                        <p class="text-sm text-gray-700 font-bold">رصد النزاعات، التدخل الودي، لوحة شرف شهرية.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="border border-green-100 rounded-lg p-3 bg-white">
+                                <h5 class="font-extrabold text-green-900 text-sm mb-1">الحزمة الثالثة: المعلم</h5>
+                                <ul class="text-sm list-disc list-inside text-gray-700 font-bold">
+                                    <li>تدريب Restorative Practices.</li>
+                                    <li>تطبيق لغة صفية داعمة.</li>
+                                    <li>جلسات تصالحية قصيرة.</li>
+                                </ul>
+                            </div>
+                            <div class="border border-green-100 rounded-lg p-3 bg-white">
+                                <h5 class="font-extrabold text-green-900 text-sm mb-1">الحزمة الرابعة: التوعية البصرية</h5>
+                                <ul class="text-sm list-disc list-inside text-gray-700 font-bold">
+                                    <li>بوسترات توعوية.</li>
+                                    <li>فيديوهات قصيرة.</li>
+                                    <li>إذاعة مدرسية أسبوعية.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border-r-4 border-amber-500 hover-scale-card relative z-10">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-amber-100 p-2 rounded-lg text-amber-600 ml-3">
+                            <span class="font-bold text-xl">3</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-amber-800 title-thin">المرحلة الثالثة: المتابعة والتقييم</h3>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 bg-amber-50 p-4 rounded-lg text-center">
+                            <i class="fas fa-search text-2xl text-amber-500 mb-2"></i>
+                            <h4 class="font-extrabold text-gray-900">ميدانياً</h4>
+                            <p class="text-sm text-gray-700 font-bold">زيارات دورية واجتماعات تقييم شهرية.</p>
+                        </div>
+                        <div class="flex-1 bg-amber-50 p-4 rounded-lg text-center">
+                            <i class="fas fa-ruler-combined text-2xl text-amber-500 mb-2"></i>
+                            <h4 class="font-extrabold text-gray-900">أدوات القياس</h4>
+                            <p class="text-sm text-gray-700 font-bold">استبيانات قبلية/بعدية وسجلات سلوك.</p>
+                        </div>
+                        <div class="flex-1 bg-amber-50 p-4 rounded-lg text-center">
+                            <i class="fas fa-file-alt text-2xl text-amber-500 mb-2"></i>
+                            <h4 class="font-extrabold text-gray-900">تقارير ربع سنوية</h4>
+                            <p class="text-sm text-gray-700 font-bold">مؤشرات كمية (أرقام) وكيفية (رضا) وتوثيق.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border-r-4 border-blue-800 hover-scale-card relative z-10">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-2 rounded-lg text-blue-800 ml-3">
+                            <span class="font-bold text-xl">4</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-blue-900 title-thin">المرحلة الرابعة: الاستدامة</h3>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-800 font-bold text-lg">
+                        <li>إدراج الحملة بالخطة السنوية.</li>
+                        <li>تدريب دفعات جديدة من السفراء والمعلمين.</li>
+                        <li>تحديث المحتوى التدريبي سنويًا.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Signatures -->
+        <section id="signatures-section" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover-scale-card scroll-mt-24">
+            <h2 class="text-2xl md:text-3xl text-gray-900 mb-8 flex items-center title-thin font-extrabold">
+                <span class="ml-3 text-3xl">✍️</span> التوقيعات الرسمية
+            </h2>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center">
+                <div class="flex-1">
+                    <p class="text-gray-600 text-sm mb-1 font-bold">موجه عام التربية الاجتماعية</p>
+                    <h4 class="text-lg font-extrabold text-gray-900 title-thin">د/ عزة الدعدر</h4>
+                </div>
+                <div class="flex-1">
+                    <p class="text-gray-600 text-sm mb-1 font-bold">مدير إدارة التدريب (التنمية المهنية)</p>
+                    <h4 class="text-lg font-extrabold text-gray-900 title-thin">د/ وائل أغا</h4>
+                </div>
+                <div class="flex-1">
+                    <p class="text-gray-600 text-sm mb-1 font-bold">يعتمد، وكيل الوزارة</p>
+                    <h4 class="text-lg font-extrabold text-gray-900 title-thin">د/ علاء جودة</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <div class="bg-primary text-white p-6 rounded-2xl text-center shadow-lg hover-scale-card">
+            <h3 class="text-xl font-extrabold mb-2 title-thin">خاتمة تنفيذية</h3>
+            <p class="font-bold text-lg">
+                تم إعداد هذه الخطة التنفيذية التفصيلية بما يضمن ترجمة رؤية حملة «أمان ورحمة» إلى واقع عملي ملموس داخل المدارس، وبما يحقق بيئة تعليمية آمنة داعمة لبناء الإنسان.
+            </p>
+        </div>
+
+        <!-- Mandatory Footer -->
+        <footer class="mt-12 text-center border-t border-gray-300 pt-6 pb-2">
+            <p class="text-gray-700 font-bold text-sm">
+                All rights are reserved to Dr. Mazen Badawy – Doctorate of English Teaching & Testing
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Active Tab ScrollSpy
+        const tabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('section');
+
+        function changeActiveTab() {
+            let index = sections.length;
+
+            while(--index && window.scrollY + 120 < sections[index].offsetTop) {} // Adjusted offset for scroll spy
+            
+            tabs.forEach((tab) => tab.classList.remove('active'));
+            if(index >= 0 && index < tabs.length) {
+                tabs[index].classList.add('active');
+                
+                // Scroll the tab into view on mobile
+                const activeTab = tabs[index];
+                activeTab.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            }
+        }
+
+        window.addEventListener('scroll', changeActiveTab);
+        
+        // Initial run
+        changeActiveTab();
+
+        // Zoom Functionality
+        let zoomLevel = 16; // Default Root Font Size in px (Tailwind defaults to 16px)
+        
+        function adjustZoom(step) {
+            zoomLevel += step;
+            // Set limits (e.g., min 12px, max 24px)
+            if (zoomLevel < 12) zoomLevel = 12;
+            if (zoomLevel > 24) zoomLevel = 24;
+            
+            // Apply to HTML root, scaling all REM-based sizes in Tailwind
+            document.documentElement.style.fontSize = zoomLevel + 'px';
+        }
+    </script>
+</body>
+</html>
